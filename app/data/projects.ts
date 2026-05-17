@@ -64,13 +64,13 @@ export const projects: Project[] = [
     title: "Modern Healing Clinic",
     category: "renovation",
     desc: "Interior rumah sakit/klinik bukan hanya soal fungsi, tapi juga tentang rasa nyaman. Dominasi material kayu oak, pencahayaan hangat, dan sentuhan hijau tropical menciptakan ambience yang lebih santai (relaxing) dan menyambut hangat (welcoming) bagi pasien maupun pengunjung. 🌱✨",
-    img: "/images/projects/rumahsakit/rs.png",
+    img: "/images/projects/RumahSakit/rs.png",
     images: [
-      "/images/projects/rumahsakit/rs.png",
-      "/images/projects/rumahsakit/rs-2.png",
-      "/images/projects/rumahsakit/rs-3.png",
-      "/images/projects/rumahsakit/rs-4.png",
-      "/images/projects/rumahsakit/rs-5.png"
+      "/images/projects/RumahSakit/rs.png",
+      "/images/projects/RumahSakit/rs-2.png",
+      "/images/projects/RumahSakit/rs-3.png",
+      "/images/projects/RumahSakit/rs-4.png",
+      "/images/projects/RumahSakit/rs-5.png"
     ]
   }
 ];

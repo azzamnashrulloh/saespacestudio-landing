@@ -185,7 +185,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className={`${darkMode ? "dark" : ""} min-h-screen bg-bg-main text-text-main font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden transition-colors duration-300`}>
+    <div className={`${darkMode ? "dark" : ""} min-h-screen bg-bg-main text-text-main font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden relative transition-colors duration-300`}>
       
       {/* BACKGROUND DECORATIVE ELEMENTS */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[150px] -z-10 pointer-events-none" />
@@ -213,6 +213,7 @@ export default function LandingPage() {
               src="/images/no-bg.png" 
               alt="Saespace Studio Logo" 
               fill
+              sizes="144px"
               className={`object-contain transition-transform duration-300 group-hover:scale-105 opacity-95 group-hover:opacity-100 ${
                 darkMode ? "brightness-0 invert" : "brightness-0"
               }`}
@@ -278,6 +279,7 @@ export default function LandingPage() {
                     src="/images/no-bg.png" 
                     alt="Saespace Studio Logo" 
                     fill 
+                    sizes="144px"
                     className={`object-contain opacity-95 ${
                       darkMode ? "brightness-0 invert" : "brightness-0"
                     }`}
@@ -371,10 +373,11 @@ export default function LandingPage() {
         {/* Fullscreen background with premium dark overlay */}
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/hero.png" 
+            src="/images/hero.jpeg" 
             alt="Premium Interior Background" 
             fill
             priority
+            sizes="100vw"
             className="object-cover object-center opacity-40 scale-105 filter blur-[1px]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-bg-main via-bg-main/80 to-bg-main/40" />
@@ -434,9 +437,10 @@ export default function LandingPage() {
               
               <div className="relative w-full h-48 rounded-2xl overflow-hidden mb-6">
                 <Image 
-                  src="/images/hero.png" 
+                  src="/images/hero.jpeg" 
                   alt="Modern Design Preview" 
                   fill
+                  sizes="(max-width: 1024px) 100vw, 400px"
                   className="object-cover"
                 />
               </div>
@@ -478,9 +482,10 @@ export default function LandingPage() {
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl -z-10" />
             <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden border border-zinc-800">
               <Image 
-                src="/images/hero.png" 
+                src="/images/hero.jpeg" 
                 alt="Saespace Studio Process" 
                 fill 
+                sizes="(max-width: 1024px) 100vw, 500px"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent" />
@@ -646,6 +651,7 @@ export default function LandingPage() {
                     src={p.img} 
                     alt={p.title} 
                     fill 
+                    unoptimized
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
@@ -773,6 +779,7 @@ export default function LandingPage() {
               src="/images/black-white.jpeg" 
               alt="Saespace Studio Crest" 
               fill
+              sizes="112px"
               className="object-contain rounded-full shadow-2xl"
             />
           </div>
@@ -814,6 +821,7 @@ export default function LandingPage() {
                 src="/images/no-bg.png" 
                 alt="Saespace Studio Logo" 
                 fill 
+                sizes="160px"
                 className={`object-contain transition-all duration-300 ${
                   darkMode ? "brightness-0 invert opacity-95" : "brightness-0 opacity-80"
                 }`}

@@ -29,8 +29,9 @@ export default function ProjectDetailPage() {
 
   const [darkMode, setDarkMode] = useState(true);
   const [activeIdx, setActiveIdx] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const autoplayTempPaused = useRef(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   // Sync theme on mount
@@ -223,7 +224,7 @@ export default function ProjectDetailPage() {
 
     // Dynamic scale, horizontal position, 3D Y-rotation tilt, z-index and opacity
     const scale = isActive ? 1.12 : 0.85 - absDiff * 0.08;
-    const xTranslation = diff * 280; // dynamic gap width
+    const xTranslation = `calc(${diff} * var(--carousel-gap))`;
     const rotateY = diff * -25; // 3D perspective angle tilt
     const zIndex = 30 - absDiff * 5;
     const opacity = isActive ? 1 : 0.55 - absDiff * 0.15;
@@ -250,6 +251,8 @@ export default function ProjectDetailPage() {
           alt={`${project.title} Backdrop`} 
           fill
           priority
+          unoptimized
+          sizes="100vw"
           className="object-cover object-center opacity-25 dark:opacity-20 scale-105 filter blur-[3px]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg-main via-bg-main/75 to-transparent" />
@@ -305,10 +308,20 @@ export default function ProjectDetailPage() {
 
         {/* 3D Curved Interactive Carousel Track */}
         <div 
-          className="relative w-full h-[350px] md:h-[480px] flex items-center justify-center overflow-hidden py-10 z-10"
+          className="relative w-full h-[350px] md:h-[480px] flex items-center justify-center overflow-hidden py-10 z-10 [--carousel-gap:145px] sm:[--carousel-gap:220px] md:[--carousel-gap:280px]"
           style={{ perspective: "1000px" }}
-          onMouseEnter={() => setIsPlaying(false)}
-          onMouseLeave={() => setIsPlaying(true)}
+          onMouseEnter={() => {
+            if (isPlaying) {
+              setIsPlaying(false);
+              autoplayTempPaused.current = true;
+            }
+          }}
+          onMouseLeave={() => {
+            if (autoplayTempPaused.current) {
+              setIsPlaying(true);
+              autoplayTempPaused.current = false;
+            }
+          }}
         >
           {/* Presenting Particles Canvas Backdrop */}
           <canvas 
@@ -338,7 +351,7 @@ export default function ProjectDetailPage() {
                   transition={{ type: "spring", stiffness: 100, damping: 20 }}
                   style={{ zIndex: style.zIndex }}
                   onClick={() => setActiveIdx(index)}
-                  className={`absolute w-[240px] h-[180px] sm:w-[380px] sm:h-[285px] md:w-[500px] md:h-[375px] rounded-3xl overflow-hidden shadow-2xl border cursor-pointer select-none transition-colors duration-300 ${
+                  className={`absolute w-[82vw] h-[61.5vw] sm:w-[380px] sm:h-[285px] md:w-[500px] md:h-[375px] rounded-3xl overflow-hidden shadow-2xl border cursor-pointer select-none transition-colors duration-300 ${
                     style.isActive 
                       ? "border-blue-500 shadow-blue-500/10" 
                       : "border-card-border hover:border-zinc-500"
@@ -348,6 +361,7 @@ export default function ProjectDetailPage() {
                     src={imgUrl}
                     alt={`${project.title} Image ${index + 1}`}
                     fill
+                    unoptimized
                     className="object-cover"
                     sizes="(max-width: 768px) 240px, 500px"
                     priority={index === 0}
